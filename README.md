@@ -1,7 +1,7 @@
 # Kubernetes Transmission
 Deploy the [Transmission BitTorrent client](https://transmissionbt.com/) on a [Kubernetes cluster](https://kubernetes.io/) with an NFS persistent volume.
 
-This repo is based off of the [zebpalmer/kubernetes-transmission-openvpn](https://github.com/zebpalmer/kubernetes-transmission-openvpn) repo. The difference is this setup uses the [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission) Docker image instead of the OpenVPN one.
+This repo is based off of the [zebpalmer/kubernetes-transmission-openvpn](https://github.com/zebpalmer/kubernetes-transmission-openvpn) repo. The difference is this setup uses the [linuxserver/transmission](https://hub.docker.com/r/linuxserver/transmission) Docker image instead of the OpenVPN one. This repo was also made using [kompose](https://github.com/kubernetes/kompose) which takes a Docker Compose file and translates it into Kubernetes resources.
 
 ## Prerequisities
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/overview/)
