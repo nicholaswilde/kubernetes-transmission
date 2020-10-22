@@ -109,6 +109,11 @@ NAME           CLASS    HOSTS                               ADDRESS         PORT
 transmission   <none>   transmission.192.168.1.202.nip.io   192.168.1.203   80      73m
 ```
 ## Uninstallation
+### Automatic
+```bash
+$ chmod +x deploy.sh
+$ ./reset.sh
+```
 ### Manual
 ```bash
 $ kubectl delete all --all -n transmission
