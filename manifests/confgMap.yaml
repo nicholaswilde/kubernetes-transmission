@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: transmission-config
+  namespace: transmission
+data:
+  PGID: "1000"
+  PUID: "1000"
+  #TRANSMISSION_WEB_HOME: /combustion-release/
+  #TRANSMISSION_WEB_HOME: /transmission-web-control/
+  TRANSMISSION_WEB_HOME: /kettu/
+  TZ: Europe/London

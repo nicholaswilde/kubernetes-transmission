@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f dc.yaml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: transmission
+  name: transmission
+  namespace: transmission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: transmission
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f dc.yaml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: transmission
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: transmission-config
+            optional: false
+        - secretRef:
+            name: transmission-creds
+            optional: false
+        image: linuxserver/transmission:arm32v7-latest
+        imagePullPolicy: ""
+        name: transmission
+        ports:
+        - containerPort: 9091
+        - containerPort: 51413
+        - containerPort: 51413
+          protocol: UDP
+        resources: {}
+        volumeMounts:
+        - name: config
+          mountPath: /config
+        - name: downloads
+          mountPath: /downloads
+          subPath: downloads
+        - name: watch
+          mountPath: /watch
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: config
+        hostPath: 
+          path: /config
+          type: ""
+      - name: downloads
+        persistentVolumeClaim:
+          claimName: transmission-pvc
+      - name: watch
+        hostPath:
+          path: /watch
+          type: ""
+status: {}

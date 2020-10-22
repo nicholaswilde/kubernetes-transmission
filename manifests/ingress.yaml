@@ -1,0 +1,16 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/whitelist-source-range: 192.168.1.0/24
+  name: transmission
+  namespace: transmission
+spec:
+  rules:
+  - host: transmission.192.168.1.202.nip.io
+    http:
+      paths:
+      - backend:
+          serviceName: transmission
+          servicePort: 9091
