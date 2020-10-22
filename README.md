@@ -109,10 +109,13 @@ NAME           CLASS    HOSTS                               ADDRESS         PORT
 transmission   <none>   transmission.192.168.1.202.nip.io   192.168.1.203   80      73m
 ```
 ## Uninstallation
+### Manual
 ```bash
 $ kubectl delete all --all -n transmission
 $ kubectl delete ingress transmission -n transmission
 $ kubectl delete pvc transmission-pvc -n transmission
 $ kubectl delete pv pv-nfs
 $ kubectl delete secret transmission-creds -n transmission
+$ kubectl delete namespace transmission
 ```
+If you are having trouble deleting the namespace, see [knsk](https://github.com/thyarles/knsk).
