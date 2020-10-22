@@ -12,7 +12,7 @@ This setup has been tested with [Rancher/K3S](https://github.com/rancher/k3s) wi
 ## Download
 ```bash
 $ git clone https://github.com/nicholaswilde/kubernetes-transmission.git
-$ cd kubernetes-transmission/manifests
+$ cd kubernetes-transmission/
 ```
 ## Setup
 ### Default Namespace
@@ -75,15 +75,22 @@ Edit the `nfs-persistentVolume.yaml`
 ```
 
 ## Installation
+### Automatic
 ```bash
-$ kubectl apply -f namespace.yaml
-$ kubectl apply -f nfs-persistentVolume.yaml
-$ kubectl apply -f persistentVolumeClaim.yaml
-$ kubectl apply -f secret.yaml
-$ kubectl apply -f confgMap.yaml
-$ kubectl apply -f service.yaml
-$ kubectl apply -f deployment.yaml
-$ kubectl apply -f ingress.yaml
+$ chmod +x deploy.sh
+$ ./deploy.sh
+```
+
+### Manual
+```bash
+$ kubectl apply -f manifests/namespace.yaml
+$ kubectl apply -f manifests/nfs-persistentVolume.yaml
+$ kubectl apply -f manifests/persistentVolumeClaim.yaml
+$ kubectl apply -f manifests/secret.yaml
+$ kubectl apply -f manifests/confgMap.yaml
+$ kubectl apply -f manifests/service.yaml
+$ kubectl apply -f manifests/deployment.yaml
+$ kubectl apply -f manifests/ingress.yaml
 ```
 
 ## Usage
@@ -100,4 +107,12 @@ transmission-94bc9d45b-9lrxr   1/1     Running   0          94m
 $ kubectl get ingress -n transmission
 NAME           CLASS    HOSTS                               ADDRESS         PORTS   AGE
 transmission   <none>   transmission.192.168.1.202.nip.io   192.168.1.203   80      73m
+```
+## Uninstallation
+```bash
+$ kubectl delete all --all -n transmission
+$ kubectl delete ingress transmission -n transmission
+$ kubectl delete pvc transmission-pvc -n transmission
+$ kubectl delete pv pv-nfs
+$ kubectl delete secret transmission-creds -n transmission
 ```
