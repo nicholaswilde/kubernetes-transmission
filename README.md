@@ -108,6 +108,8 @@ $ kubectl get ingress -n transmission
 NAME           CLASS    HOSTS                               ADDRESS         PORTS   AGE
 transmission   <none>   transmission.192.168.1.202.nip.io   192.168.1.203   80      73m
 ```
+Make sure the IP address in the `HOST` matches the one listed in `ADDRESS`
+
 ## Uninstallation
 ### Automatic
 ```bash
