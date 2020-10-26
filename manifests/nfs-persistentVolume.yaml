@@ -1,7 +1,8 @@
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-nfs
+  name: transmission-pv-nfs
   namespace: transmission
   labels:
     bucket: shared
