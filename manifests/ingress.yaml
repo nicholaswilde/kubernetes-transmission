@@ -1,5 +1,5 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -8,9 +8,13 @@ metadata:
   namespace: transmission
 spec:
   rules:
-  - host: transmission.192.168.1.202.nip.io
+  - host: transmission.192.168.1.193.nip.io
     http:
       paths:
-      - backend:
-          serviceName: transmission
-          servicePort: 9091
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: transmission
+            port:
+              number: 9091
